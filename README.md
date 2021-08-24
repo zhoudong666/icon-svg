@@ -6,27 +6,33 @@
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+Compiles and hot-reloads for development
 
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+Compiles and minifies for production
 
 ```
 yarn build
 ```
 
-### Lints and fixes files
+Lints and fixes files
 
 ```
 yarn lint
 ```
 
-### Customize configuration
-
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+
+
+
+
+
 
 # [icon-优雅的使用 icon](https://juejin.cn/post/6844903517564436493)
 
@@ -144,7 +150,24 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 所以最安全合理的做法是使用 webpack 的 [exclude](https://link.juejin.cn?target=https%3A%2F%2Fwebpack.js.org%2Fconfiguration%2Fmodule%2F%23rule-exclude) 和 [include](https://link.juejin.cn?target=https%3A%2F%2Fwebpack.js.org%2Fconfiguration%2Fmodule%2F%23rule-include) ，让`svg-sprite-loader`只处理你指定文件夹下面的 svg，`url-loaer`只处理除此文件夹之外的所以 svg，这样就完美解决了之前冲突的问题。 代码如下
 
-![img](.\img\icon-svg-sprite-loader.png)
+```js
+{
+  test: /\.svg$/,
+  loader: "svg-sprite-loader",
+  include: [resolve("src/icons")],
+  options: {
+    symbolId: "icon-[name]",
+  },
+},
+{
+  test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+  loader: "url-loader",
+  exclude: [resolve("src/icons")],
+  options: {
+    limit: 10000,
+  },
+},
+```
 
 这样配置好了，只要引入 svg 之后填写类名就可以了
 
@@ -152,8 +175,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 import '@/src/icons/qq.svg; //引入图标
 
 <svg><use xlink:href="#qq" /></svg>  //使用图标
-
-复制代码
 ```
 
 单这样还是非常的不优雅，如果我项目中有一百个 icon，难不成我要手动一个个引入么！ **偷懒是程序员的第一生产力！！！**
@@ -162,7 +183,7 @@ import '@/src/icons/qq.svg; //引入图标
 
 首先我们创建一个专门放置图标 icon 的文件夹如：`@/src/icons`，将所有 icon 放在这个文件夹下。 之后我们就要使用到 webpack 的 [require.context](https://link.juejin.cn?target=https%3A%2F%2Fwebpack.js.org%2Fguides%2Fdependency-management%2F%23require-context)。很多人对于 `require.context`可能比较陌生，直白的解释就是
 
-> require.context("./test", false, /.test.js\$/); 这行代码就会去 test 文件夹（不包含子目录）下面的找所有文件名以 `.test.js` 结尾的文件能被 require 的文件。 更直白的说就是 我们可以通过正则匹配引入相应的文件模块。
+> require.context("./test", false, /.test.js$/); 这行代码就会去 test 文件夹（不包含子目录）下面的找所有文件名以 `.test.js` 结尾的文件能被 require 的文件。 更直白的说就是 我们可以通过正则匹配引入相应的文件模块。
 
 require.context 有三个参数：
 
@@ -185,13 +206,29 @@ requireAll(req)
 
 虽然 iconfont 网站导出的 svg 内容已经算蛮精简的了，但你会发现其实还是与很多无用的信息，造成了不必要的冗余。就连 iconfont 网站导出的 svg 都这样，更不用说那些更在意 ui 漂不漂亮不懂技术的设计师了(可能)导出的 svg 了。好在 `svg-sprite-loader`也考虑到了这点，它目前只会获取 svg 中 path 的内容，而其它的信息一概不会获取。生成 svg 如下图：
 
-![img](.\img\icon-svg-sprite-loader-2.png)
+```
+<svg t="1629786326610" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3009"
+  width="128" height="128">
+  <path
+    d="M853.333333 480H544V170.666667c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v309.333333H170.666667c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h309.333333V853.333333c0 17.066667 14.933333 32 32 32s32-14.933333 32-32V544H853.333333c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32z"
+    p-id="3010">
+  </path>
+</svg>
+```
 
 但任何你在 path 中产生的冗余信息它就不会做处理了。如注释什么的
 
-![img](.\img\icon-svg-sprite-loader-3.png)
+```
+<svg class="icon" viewBox="0 0 1024 1024" fill="currentColor"><path d="M853.333 480H544V170.667c0-17.067-14.933-32-32-32s-32 14.933-32 32V480H170.667c-17.067 0-32 14.933-32 32s14.933 32 32 32H480v309.333c0 17.067 14.933 32 32 32s32-14.933 32-32V544h309.333c17.067 0 32-14.933 32-32s-14.933-32-32-32z"/></svg>
+```
 
 使用另一个很好用的东西了-- [svgo](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fsvg%2Fsvgo)
+
+
+
+
+
+
 
 # svg-sprite-loader 使用教程
 
@@ -201,7 +238,14 @@ svg-sprite-loader 将加载的 svg 图片拼接成 雪碧图，放到页面中�
 
 ###### 首先在 src 下建立以下目录和文件：
 
-![img](img/icon-svg-sprite-loader-4.png)
+```
+src
+  |--icons
+  	|--svg
+  	  |--eye.svg
+  |--index.js
+  
+```
 
 ##### 安装和配置 svg-sprite-loader:
 
@@ -214,11 +258,23 @@ npm i -D svg-sprite-loader
 webpack 配置：
 
 ```vue
-{ test: /\.svg$/, loader: 'svg-sprite-loader', include: [resolve('src/icons')],
-options: { symbolId: 'icon-[name]' } }, { test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-loader: 'url-loader', options: { limit: 10000, name:
-utils.assetsPath('img/[name].[hash:7].[ext]') }, exclude: [resolve('src/icons')]
-},
+  {
+      test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+        include: [resolve('src/icons')],
+        options: {
+          symbolId: 'icon-[name]'
+        }
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+        },
+        exclude: [resolve('src/icons')]
+      },
 ```
 
 > 注意 url-loader 中要将 icons 文件夹排除, 不让 url-loader 处理该文件夹
@@ -273,10 +329,15 @@ export default {
 ##### icons 下面的 index.js 写入以下内容：
 
 ```vue
-import Vue from 'vue' import SvgIcon from '@/components/SvgIcon'// svg组件 //
-register globally Vue.component('svg-icon', SvgIcon) const requireAll =
-requireContext => requireContext.keys().map(requireContext) const req =
-require.context('./svg', false, /\.svg$/) requireAll(req)
+import Vue from 'vue'
+import SvgIcon from '@/components/SvgIcon'// svg组件
+
+// register globally
+Vue.component('svg-icon', SvgIcon)
+
+const requireAll = requireContext => requireContext.keys().map(requireContext)
+const req = require.context('./svg', false, /\.svg$/)
+requireAll(req)
 ```
 
 ##### 入口 main.js 将 index.js 引入：
