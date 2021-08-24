@@ -6,11 +6,11 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "svgo": "svgo -f src/icons/svg"
+    "svgo": "svgo -f src/icons/svg",
+    "svgo2": "svgo -f src/icons/svg --config src/icons/svgo.config.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "svg-sprite-loader": "^6.0.9",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
   },
@@ -29,6 +29,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "svg-sprite-loader": "^6.0.9",
+    "svgo": "^2.4.0",
     "vue-template-compiler": "^2.6.11"
   }
 }

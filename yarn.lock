@@ -2617,7 +2617,7 @@ commander@^2.18.0, commander@^2.20.0:
 
 commander@^7.1.0:
   version "7.2.0"
-  resolved "https://registry.nlark.com/commander/download/commander-7.2.0.tgz?cache=0&sync_timestamp=1627358254258&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcommander%2Fdownload%2Fcommander-7.2.0.tgz#a36cb57d0b501ce108e4d20559a150a391d97ab7"
+  resolved "https://registry.nlark.com/commander/download/commander-7.2.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcommander%2Fdownload%2Fcommander-7.2.0.tgz#a36cb57d0b501ce108e4d20559a150a391d97ab7"
   integrity sha1-o2y1fQtQHOEI5NIFWaFQo5HZerc=
 
 commander@~2.19.0:
@@ -8168,7 +8168,7 @@ svgo@^1.0.0:
 
 svgo@^2.4.0:
   version "2.4.0"
-  resolved "https://registry.nlark.com/svgo/download/svgo-2.4.0.tgz?cache=0&sync_timestamp=1628874158623&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsvgo%2Fdownload%2Fsvgo-2.4.0.tgz#0c42653101fd668692c0f69b55b8d7b182ef422b"
+  resolved "https://registry.nlark.com/svgo/download/svgo-2.4.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsvgo%2Fdownload%2Fsvgo-2.4.0.tgz#0c42653101fd668692c0f69b55b8d7b182ef422b"
   integrity sha1-DEJlMQH9ZoaSwPabVbjXsYLvQis=
   dependencies:
     "@trysound/sax" "0.1.1"

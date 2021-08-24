@@ -1,18 +1,40 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h4>添加颜色，hover</h4>
+    <icon-svg class="red" icon-name="friend-fields"></icon-svg>
+    <h4>
+      添加事件 <icon-svg class="event" icon-name="add" @click="eventHandle" />
+    </h4>
+    <div>{{ num }}</div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      num: 1
+    }
+  },
+  methods: {
+    eventHandle() {
+      console.log(888)
+      this.num++
+    }
   }
 }
 </script>
+<style lang="scss" scoped>
+.svg-icon {
+  font-size: 24px;
+}
+.red {
+  color: #f00;
+}
+.red:hover {
+  color: #42b983;
+  cursor: pointer;
+}
+</style>
