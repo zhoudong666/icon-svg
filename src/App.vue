@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/scrollbar">Scrollbar</router-link>
+      <router-link to="/scrollbar">Scrollbar</router-link> |
+      <router-link to="/el-comp">ElComp</router-link>
     </div>
     <div class="box">
       <el-scrollbar>

@@ -18,6 +18,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "scrollbar" */ '../views/Scrollbar.vue')
+  },
+  {
+    path: '/el-comp',
+    name: 'ElComp',
+    component: () => import('../views/ElComp.vue')
   }
 ]
 
