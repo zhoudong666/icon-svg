@@ -1,9 +1,10 @@
 <template>
   <div class="home">
-    <h4>添加颜色，hover</h4>
+    <h2>icon-svg 自定义icon组件使用</h2>
+    <h4>1 添加颜色，hover</h4>
     <icon-svg class="red" icon-name="friend-fields"></icon-svg>
     <h4>
-      添加事件 <icon-svg class="event" icon-name="add" @click="eventHandle" />
+      2 添加事件 <icon-svg class="event" icon-name="add" @click="eventHandle" />
     </h4>
     <div>{{ num }}</div>
   </div>

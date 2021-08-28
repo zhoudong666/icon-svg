@@ -8,6 +8,11 @@ import router from './router'
 
 import './icons' // 代替单个 icons里的 svg 文件导入
 
+// 作为测试,直接引入全部组件
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+
 Vue.config.productionTip = false
 
 new Vue({
