@@ -1,8 +1,3 @@
-import Vue from 'vue'
-import IconSvg from '@/components/IconSvg.vue'
-// 默认引入icons时，直接全局注册IconSvg组件
-Vue.component(IconSvg.name, IconSvg)
-
 const req = require.context('./svg', false, /\.svg$/)
 
 function importAll(request) {

@@ -2,22 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
-// import './icons/svg/friend-fields.svg'
-// import './icons/svg/search.svg'
-// import './icons/svg/save.svg'
-
-import './icons' // 代替单个 icons里的 svg 文件导入
-
-import VueHighlightJS from './plugins/highlightjs' // 代码块高亮模块引入
-
+// 引入插件，放在此处引用是为了下面的router和store中可能会用到某些插件的功能
+import './plugins/index'
 import './style/global.css'
-// 作为测试,直接引入全部组件
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI)
-
-// Tell Vue.js to use vue-highlightjs
-Vue.use(VueHighlightJS) // 代码块高亮注册
 
 Vue.config.productionTip = false
 

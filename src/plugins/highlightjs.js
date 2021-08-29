@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
 
@@ -39,13 +40,18 @@ vueHighlightJS.install = function install(Vue) {
   })
 }
 
+// 自动注册 方式 一
 // if (typeof window !== 'undefined' && window.Vue) {
 //   // 挂载在window上的自动安装，也就是通过script标签引入时不需要手动调用Vue.use()
 //   vueHighlightJS.install(window.Vue)
 // }
 
-// 自动注册插件
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(vueHighlightJS)
-}
+// 自动注册插件 方式 二
+// if (typeof window !== 'undefined' && window.Vue) {
+//   window.Vue.use(vueHighlightJS)
+// }
+
+Vue.use(vueHighlightJS)
+// vueHighlightJS.install(Vue)   // 二选一
+
 export default vueHighlightJS
