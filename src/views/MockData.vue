@@ -2,11 +2,8 @@
   <div>
     <h3>MockData开发模拟数据的server简单创建</h3>
     <div>请求结果见控制台</div>
-    <pre>
-       <code v-text='aaa'>
-       </code>
-     </pre>
-    <pre>
+
+    <pre v-highlightjs>
         <code class="javascript" style="text-align:left;">
     const bodyPaser = require('body-parser')
     const Mock = require('mockjs')
@@ -111,12 +108,9 @@
 
 <script>
 import axios from 'axios'
-import hljs from 'highlight.js'
-import 'highlight.js/styles/atom-one-dark.css'
 export default {
   name: 'MockData',
   async mounted() {
-    hljs.highlightAll()
     const info = await axios.get('/user/info?id=12', { params: { height: 11 } })
     console.log('/user/info', info.data)
 
@@ -125,45 +119,6 @@ export default {
 
     const date = await axios.post('/user/date', { someday: '2021/8/28' })
     console.log('/user/date', `11`, date.data)
-
-    this.$nextTick(() => {
-      var codeEle = document.querySelectorAll('code')
-      for (let i = 0; i < codeEle.length; i++) {
-        const line = codeEle[i].innerHTML.replace(/\n/g, '</li><li>').slice(5)
-        codeEle[i].innerHTML = `<ul>${line}</li></ul>`
-      }
-    })
-  },
-  data() {
-    return {
-      aaa: `
-<div>highlight.js使用 测试</div>
-<button>
-  <i>123</i>
-</button>
-设置行号样式
-/* 语法高亮的行号样式 */
-.hljs ul {
-  list-style: decimal;
-  margin: 0 0 0 40px !important;
-  padding: 0;
-}
-.hljs li {
-  list-style: decimal-leading-zero;
-  border-left: 1px solid #ddd !important;
-  padding: 2px 5px !important;
-  margin: 0 !important;
-  line-height: 14px;
-  width: 100%;
-  box-sizing: border-box;
-}
-.hljs li:nth-of-type(even) {
-  background-color: rgba(255, 255, 255, 0.015);
-  color: inherit;
-}
-
-`
-    }
   }
 }
 </script>
