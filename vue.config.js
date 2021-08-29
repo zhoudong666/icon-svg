@@ -3,6 +3,9 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 module.exports = {
+  devServer: {
+    before: require('./mock/server.js')
+  },
   chainWebpack: config => {
     // set svg-sprite-loader
     config.module
@@ -26,7 +29,7 @@ module.exports = {
      * https://juejin.cn/post/6947851867422621733
      */
     // 1、entry 入口配置
-    config.entry('main').add('./src/main.js')
+    // config.entry('main').add('./src/main.js')
     /** 等同于
     *  entry: {
          main: ['./src/main.js']

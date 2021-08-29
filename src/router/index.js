@@ -23,6 +23,11 @@ const routes = [
     path: '/el-comp',
     name: 'ElComp',
     component: () => import('../views/ElComp.vue')
+  },
+  {
+    path: '/mock-data',
+    name: 'MockData',
+    component: () => import('../views/MockData.vue')
   }
 ]
 

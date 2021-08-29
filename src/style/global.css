@@ -1,0 +1,29 @@
+/* 一定要是全局的样式 */
+.el-scrollbar__wrap {
+  overflow-x: hidden !important;
+}
+.el-scrollbar {
+  height: 100%;
+}
+
+/* 语法高亮的行号样式 */
+.hljs ul {
+  list-style: decimal;
+  margin: 0 0 0 40px !important;
+  padding: 0;
+}
+
+.hljs li {
+  list-style: decimal-leading-zero;
+  border-left: 1px solid #ddd !important;
+  padding: 2px 5px !important;
+  margin: 0 !important;
+  line-height: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hljs li:nth-of-type(even) {
+  background-color: rgba(255, 255, 255, 0.015);
+  color: inherit;
+}
