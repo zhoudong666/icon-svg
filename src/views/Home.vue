@@ -24,6 +24,10 @@ export default {
       console.log(888)
       this.num++
     }
+  },
+  mounted() {
+    console.log(this.num)
+    console.log(this._data)
   }
 }
 </script>
