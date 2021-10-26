@@ -1,16 +1,16 @@
 const bodyPaser = require('body-parser')
 const Mock = require('mockjs')
 const path = require('path')
-const chokidar = require('chokidar') //此模块用于监听文件内容更改
+const chokidar = require('chokidar') // 此模块用于监听文件内容更改
 
 function registerRoutes(app) {
   let mockLastIndex
 
   const user = require('./user') // 引入模拟的各个模块
-  let mocks = [...user] // 存放模拟接口的数组
+  const mocks = [...user] // 存放模拟接口的数组
   mocks.forEach(item => {
     item.url = new RegExp(`${item.url}`) // 对请求地址处理
-    let isFn = item.response instanceof Function
+    const isFn = item.response instanceof Function
 
     // webpack v4 官方例子
     // devServer: {
@@ -37,7 +37,7 @@ function registerRoutes(app) {
 module.exports = app => {
   app.use(bodyPaser.json())
   app.use(bodyPaser.urlencoded({ extended: true }))
-  let mockRoutes = registerRoutes(app)
+  const mockRoutes = registerRoutes(app)
   var mockRoutesLength = mockRoutes.mockRoutesLength
   var mockStartIndex = mockRoutes.mockStartIndex
 
@@ -64,7 +64,7 @@ module.exports = app => {
 
           unregistRoutes()
 
-          let mockRoutes = registerRoutes(app)
+          const mockRoutes = registerRoutes(app)
           mockRoutesLength = mockRoutes.mockRoutesLength
           mockStartIndex = mockRoutes.mockStartIndex
         } catch (err) {

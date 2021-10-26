@@ -1,4 +1,4 @@
-let msgObj = { code: 0, msg: 'ok' }
+const msgObj = { code: 0, msg: 'ok' }
 module.exports = [
   // get user
   {
